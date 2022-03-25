@@ -13,7 +13,7 @@ $this->load->view("template/head");
             <div class="card">
                 <div class="card-header">
                     <h4>Product List</h4>
-                    <select type="" id="selectproduk" class="form-control"></select>
+                    <select style="width:100%;" type="" id="selectproduk" class=""></select>
                 </div>
                 <div class="card-body" id="tabelproduk">
 
@@ -60,10 +60,15 @@ $this->load->view("template/foot");
 <script type="text/javascript">
 var kode = "<?=$transaksi["kode"]?>";
 loadtable();
+
 $(function() {
     $('#selectproduk').select2({
         minimumInputLength: 3,
         allowClear: true,
+        containerCssClass: "select2--large", // For Select2 v4.0
+        selectionCssClass: "select2--large", // For Select2 v4.1
+        dropdownCssClass: "select2--large",
+        theme: "bootstrap-5",
         placeholder: 'Masukkan nama produk',
         ajax: {
             dataType: 'json',
@@ -113,6 +118,7 @@ function loadtable() {
             $("#tabelproduk").html(res["item"]);
             $("#total").val(res["total"]);
             hitungsisa();
+            $('#selectproduk').focus().select();
         }
     });
 }
